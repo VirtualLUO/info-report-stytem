@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+  	<select id="userLogin" resultType="User" parameterType="String">
+  		select * from users where username = #{username}
+  	</select>
+  	<insert id="insertUser" parameterType="User">
+		insert into users (username,password,role,groupid) values (#{username},#{password},#{role},#{groupid})
+	</insert>
+	<select id="getlist" resultType="User">
+		select * from users order by id desc
+	</select>
+	<select id="findGroup" resultType="int">
+  		select count(*) from zu where groupname=#{groupname}
+  	</select>
+  	<insert id="insertGroup" parameterType="Group">
+  		insert into zu (groupname) values (#{groupname})
+  	</insert>
+  	<select id="getGroupList" resultType="Group">
+  		select * from zu order by id asc
+  	</select>
+  	<select id="getUserByGroup" resultType="User">
+  		select * from users where groupid=#{groupid}
+  	</select>
+  	<delete id="delGroup" parameterType="_int">
+		delete from zu where id= #{id}
+	</delete>
+	<select id="getUser" resultType="User" parameterType="_int">
+  		select * from users where id=#{id}
+  	</select>  
+  	<update id="updateUser" parameterType="User">
+		update users set groupid=#{groupid} where id=#{id}
+	</update>
+	<select id="getGroup" parameterType="_int" resultType="Group">
+	select * from zu where id=#{groupid}
+	</select>
+</mapper>

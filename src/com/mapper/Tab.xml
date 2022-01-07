@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.TabMapper">
+	<insert id="insertTab" parameterType="Tables">
+		insert into tables (tabgroup,tabname,cncol,enname) values (#{tabgroup},#{tabname},#{cncol},#{enname})
+	</insert>
+	<select id="getlist" resultType="Tables">
+		select * from tables
+	</select>
+	<select id="getTab" resultType="Tables" parameterType="_int">
+		select * from tables where id=#{id}
+	</select>
+	<delete id="deleteTable" parameterType="_int">
+		delete from tables where id= #{id}
+	</delete>
+	<select id="getgroups" resultType="Tables">
+		select distinct tabgroup from tables
+	</select>
+</mapper>
